@@ -7,8 +7,16 @@ Generate Universal Dashboard frameworks from React libraries.
 The following example creates a new framework based on [Ant Design](https://ant.design/).
 
 ```powershell
-Export-UDFramework -NpmPackage 'antd' -Name 'AntDesign' -AdditionalImports 'antd/dist/antd.css'
+Export-UDFramework -Package 'antd' -Name 'AntDesign' -AdditionalImports 'antd/dist/antd.css'
 ```
+
+The following example creates a new framework based on [React-Bootsrap](https://react-bootstrap.github.io/).
+
+```powershell
+Export-UDFramework -Package react-bootstrap -AdditionalPackages bootstrap@4.6.0 -Name bootstrap -AdditionalImports 'bootstrap/dist/css/bootstrap.min.css'
+```
+
+
 
 # Framework Usage
 
@@ -49,6 +57,18 @@ New-UDComponent -Type 'Layout' -Content {
 ```
 
 ![](./images/dashboard.png)
+
+## Bootstrap
+
+```
+New-UDComponent -Type 'Button' -Content {
+    "Hello"
+} -Properties @{
+    variant = 'primary'
+}
+```
+
+![](./images/bootstrap.png)
 
 # Benefits
 
