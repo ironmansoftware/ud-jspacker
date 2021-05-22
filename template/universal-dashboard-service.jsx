@@ -3,8 +3,7 @@ import { fetchGet, fetchPost, fetchDelete, fetchPut, fetchPostRaw, fetchPostForm
 import PubSub from 'pubsub-js';
 var _ = require('lodash');
 
-import * as componentList from 'antd'
-import 'antd/dist/antd.css';
+// Imports
 
 const getComponentData = (id) => {
     return new Promise((resolve, reject) => {

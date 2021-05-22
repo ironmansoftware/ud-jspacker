@@ -1,7 +1,9 @@
 function Export-UDFramework {
     param(
         [Parameter(Mandatory)]
-        [string[]]$NpmPackage,
+        [string]$Package,
+        [Parameter()]
+        [string[]]$AdditionalPackages,
         [Parameter(Mandatory)]
         [string]$Name,
         [Parameter()]
@@ -9,8 +11,7 @@ function Export-UDFramework {
     )
 
     $StagingPath = Join-Path ([IO.Path]::GetTempPath()) $Name
-    if (Test-Path $StagingPath)
-    {
+    if (Test-Path $StagingPath) {
         Remove-Item $StagingPath -Force -Recurse
     }
 
@@ -23,14 +24,14 @@ function Export-UDFramework {
     npm install
 
     $Imports = ''
-    foreach($package in $NpmPackage)
-    {
-        $Imports += "import * as componentList from '$package';`r`n"
-        npm install $package --save
+    $Imports += "import * as componentList from '$package';`r`n"
+    npm install $package --save
+
+    foreach ($addPack in $AdditionalPackages) {
+        npm install $addPack --save
     }
 
-    foreach($import in $AdditionalImports)
-    {
+    foreach ($import in $AdditionalImports) {
         $Imports += "import '$import';`r`n"
     }
 
